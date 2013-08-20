@@ -1,6 +1,8 @@
 module GlobalWeather
   class Weather
 
+    include Utils
+
     ATTRIBUTES = %w(location time wind temperature
                     dew_point relative_humidity pressure sky_conditions
                     visibility)
@@ -19,12 +21,11 @@ module GlobalWeather
       end
 
       if response.success?
-        result =  response &&
-                    response.hash[:envelope] && 
-                      response.hash[:envelope][:body] &&
-                       response.hash[:envelope][:body][:get_weather_response] &&
-                         response.hash[:envelope][:body][:get_weather_response][:get_weather_result]
-        create_attributes(result)
+        body   = response.hash[:envelope] && response.hash[:envelope][:body]
+        if body
+          result = body[:get_weather_response] && body[:get_weather_response][:get_weather_result]
+          create_attributes(result)
+        end
       end
     end
 
@@ -40,14 +41,6 @@ module GlobalWeather
       ATTRIBUTES.each do |attribute|
         instance_variable_set("@#{attribute}", hrep['CurrentWeather'][camelize(attribute)])
       end
-    end
-
-    def camelize(lower_case_and_underscored_word)
-      lower_case_and_underscored_word.to_s.gsub(/\/(.?)/) { "::#{$1.upcase}" }.gsub(/(?:^|_)(.)/) { $1.upcase }
-    end
-
-    def fix_header!(string_xml)
-      string_xml.gsub!(/\<\?.+\?\>/,'')
     end
   end
 end
