@@ -1,7 +1,8 @@
 # GlobalWeather
 
-GlobalWeather SOAP service wrapper. 
-http://www.webservicex.net/WS/WSDetails.aspx?WSID=56&CATID=12
+[Global Weather SOAP
+service](http://www.webservicex.net/WS/WSDetails.aspx?WSID=56&CATID=12)
+ruby wrapper. 
 
 ## Installation
 
@@ -21,9 +22,9 @@ Or install it yourself as:
 
 1. To get cities by country (e.g. Germany)
    
-   country = GlobalWeather::Country.new 'Germany'
+    country = GlobalWeather::Country.new 'Germany'
    
-   country.cities # returns an array of strings
+    country.cities # returns an array of strings
 
 
 2. In order to get current weather (e.g. country 'Germany', city 'Berlin'):
@@ -31,7 +32,9 @@ Or install it yourself as:
     weather = GlobalWeather::Weather.new 'Germany', 'Berlin' 
      
     puts weather.time
+
     puts weather.temperature
+
     puts weather.pressure
 
   See full list of attributes:
