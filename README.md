@@ -1,6 +1,7 @@
 # GlobalWeather
 
-TODO: Write a gem description
+GlobalWeather SOAP service wrapper. 
+http://www.webservicex.net/WS/WSDetails.aspx?WSID=56&CATID=12
 
 ## Installation
 
@@ -18,12 +19,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1. To get cities by country (e.g. Germany)
+   
+   country = GlobalWeather::Country.new 'Germany'
+   
+   country.cities # returns an array of strings
 
-## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+2. In order to get current weather (e.g. country 'Germany', city 'Berlin'):
+
+    weather = GlobalWeather::Weather.new 'Germany', 'Berlin' 
+     
+    puts weather.time
+    puts weather.temperature
+    puts weather.pressure
+
+  See full list of attributes:
+
+    GlobalWeather::Weather::ATTRIBUTES
+
+Can it be simplier?

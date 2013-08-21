@@ -1,21 +1,21 @@
 module GlobalWeather
   class Country
 
-    attr_accessor :response
+    include Utils
+
     attr_reader :name, :cities
 
     def initialize(name = nil)
-      client = Savon.client wsdl: 'http://www.webservicex.net/globalweather.asmx?WSDL',
-                             env_namespace: 'soap'
+      client = Savon.client wsdl: local_wsdl_file # included from Utils
 
       raise Errors::CountryNotProvided if name.nil?
 
-      @response = client.call(:get_cities_by_country) do |locals|
+      response = client.call(:get_cities_by_country) do |locals|
         locals.message 'CountryName' => name
       end
 
-      if @response.success?
-        body   = @response.hash[:envelope] && @response.hash[:envelope][:body]
+      if response.success?
+        body   = response.hash[:envelope] && @response.hash[:envelope][:body]
         if body
           result = body[:get_cities_by_country_response] && body[:get_cities_by_country_response][:get_cities_by_country_result]
           create_attributes(result)

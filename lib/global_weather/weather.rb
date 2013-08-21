@@ -10,8 +10,7 @@ module GlobalWeather
     attr_reader *ATTRIBUTES
 
     def initialize(country = nil, city = nil)
-      client = Savon.client wsdl: 'http://www.webservicex.net/globalweather.asmx?WSDL',
-                             env_namespace: 'soap'
+      client = Savon.client wsdl: local_wsdl_file # included from Utils
 
       raise Errors::CityNotProvided if city.nil?
       raise Errors::CountryNotProvided if country.nil?
@@ -32,13 +31,17 @@ module GlobalWeather
     private
 
     def create_attributes(string_xml_or_hash)
+      # Current weather information are returning as xml string instead of hash
+      # That is why I parse it here with Nori into a hash
       hrep = if string_xml_or_hash.is_a?(String)
                Nori.new.parse(fix_header!(string_xml_or_hash))
+              # in case service will return result as hash, do nothing
              elsif string_xml_or_hash.is_a?(Hash)
                string_xml_or_hash
              end
 
       ATTRIBUTES.each do |attribute|
+        # camelize method is included from Utils
         instance_variable_set("@#{attribute}", hrep['CurrentWeather'][camelize(attribute)])
       end
     end

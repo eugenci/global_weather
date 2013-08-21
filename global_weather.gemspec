@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = GlobalWeather::VERSION
   spec.authors       = ["Eugen Ciur"]
   spec.email         = ["ciur.eugen@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{GlobalWeather SOAP service wrapper}
+  spec.summary       = %q{Provides Weather and Country objects to use easy GlobalWeather service}
   spec.homepage      = ""
   spec.license       = "MIT"
 
