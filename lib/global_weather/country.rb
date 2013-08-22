@@ -1,8 +1,6 @@
 module GlobalWeather
   class Country
 
-    include Utils
-
     attr_reader :name, :cities
 
     def initialize(name = nil)
@@ -10,12 +8,14 @@ module GlobalWeather
 
       raise Errors::CountryNotProvided if name.nil?
 
+      @name = name
+
       response = client.call(:get_cities_by_country) do |locals|
         locals.message 'CountryName' => name
       end
 
       if response.success?
-        body   = response.hash[:envelope] && @response.hash[:envelope][:body]
+        body   = response.hash[:envelope] && response.hash[:envelope][:body]
         if body
           result = body[:get_cities_by_country_response] && body[:get_cities_by_country_response][:get_cities_by_country_result]
           create_attributes(result)
@@ -25,6 +25,9 @@ module GlobalWeather
 
     private
 
+    include Utils
+
+    # Instaniates attribute 'cites' with an array of strings (cities)
     def create_attributes(result)
       hrep = Nori.new.parse(result)
       new_data_set = hrep && hrep['NewDataSet']

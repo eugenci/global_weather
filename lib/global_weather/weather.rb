@@ -1,8 +1,6 @@
 module GlobalWeather
   class Weather
 
-    include Utils
-
     ATTRIBUTES = %w(location time wind temperature
                     dew_point relative_humidity pressure sky_conditions
                     visibility)
@@ -30,10 +28,13 @@ module GlobalWeather
 
     private
 
+    include Utils
+
     def create_attributes(string_xml_or_hash)
       # Current weather information are returning as xml string instead of hash
       # That is why I parse it here with Nori into a hash
       hrep = if string_xml_or_hash.is_a?(String)
+               raise Errors::CityOrCountryInvalid if string_xml_or_hash =~ /Data Not Found/
                Nori.new.parse(fix_header!(string_xml_or_hash))
               # in case service will return result as hash, do nothing
              elsif string_xml_or_hash.is_a?(Hash)

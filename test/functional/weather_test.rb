@@ -21,9 +21,21 @@ class GlobalWeatherNegativeTests < Test::Unit::TestCase
     end
   end
 
-  def test_invalid_city_provided
+  def test_city_or_country_invalid_1
+    assert_raise GlobalWeather::CityOrCountryInvalid do
+      GlobalWeather::Weather.new 'Blah', 'Berlin'
+    end
   end
 
-  def test_invalid_country_provided
+  def test_city_or_country_invalid_2
+    assert_raise GlobalWeather::CityOrCountryInvalid do
+      GlobalWeather::Weather.new 'Germany', 'Blah'
+    end
+  end
+
+  def test_city_or_country_invalid_3
+    assert_raise GlobalWeather::CityOrCountryInvalid do
+      GlobalWeather::Weather.new 'Blah', 'Blah'
+    end
   end
 end

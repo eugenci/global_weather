@@ -42,3 +42,17 @@ Or install it yourself as:
     GlobalWeather::Weather::ATTRIBUTES
 
 Can it be simplier?
+
+## Test
+
+Command 
+
+  $ rake
+
+or 
+
+  $ rake test
+
+will run all tests
+
+
