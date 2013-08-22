@@ -20,26 +20,34 @@ Or install it yourself as:
 
 ## Usage
 
+Basically GlobalWeather gem provides 2 classes Country (wrap
+GetCitiesByCountry soap method call) and Weather (wraps GetWeather method call)
+
 1. To get cities by country (e.g. Germany)
    
-    country = GlobalWeather::Country.new 'Germany'
-   
-    country.cities # returns an array of strings
+
+      country = GlobalWeather::Country.new 'Germany'
+     
+      country.cities # returns an array of strings
 
 
 2. In order to get current weather (e.g. country 'Germany', city 'Berlin'):
 
-    weather = GlobalWeather::Weather.new 'Germany', 'Berlin' 
-     
-    puts weather.time
 
-    puts weather.temperature
+      weather = GlobalWeather::Weather.new 'Germany', 'Berlin' 
+       
+      puts weather.time
 
-    puts weather.pressure
+      puts weather.temperature
+
+      puts weather.pressure
+
 
   See full list of attributes:
 
-    GlobalWeather::Weather::ATTRIBUTES
+
+      GlobalWeather::Weather::ATTRIBUTES
+
 
 Can it be simplier?
 
@@ -47,11 +55,13 @@ Can it be simplier?
 
 Command 
 
-  $ rake
+
+    $ rake
 
 or 
 
-  $ rake test
+
+    $ rake test
 
 will run all tests
 
