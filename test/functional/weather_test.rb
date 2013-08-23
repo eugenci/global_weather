@@ -2,7 +2,7 @@ require_relative File.expand_path(File.dirname(__FILE__) + '/../test_helper')
 
 class GlobalWeatherPositiveTests < Test::Unit::TestCase
   def test_basic_call
-    weather = GlobalWeather::Weather.new 'Germany', 'Berlin'
+    weather = GlobalWeather::Weather.new 'Germany', 'Berlin', log: false
 
     assert weather.time =~ /UTC/
     assert weather.location =~ /Berlin/

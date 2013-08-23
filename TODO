@@ -1,0 +1,13 @@
+Wrapper must return ruby objects instead of strings.
+
+Temprature:
+  '59 F (15 C)'   -->   {'C':15, 'F': 59}
+
+Pressure:
+  30.15 in. Hg (1021 hPa) --> {'Hg': 30.15, 'hPa': 1021}
+
+Dew point:
+  '59 F (15 C)'   -->   {'C':15, 'F': 59}
+
+Time:
+  DateTime obj

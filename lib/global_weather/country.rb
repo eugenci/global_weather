@@ -3,8 +3,10 @@ module GlobalWeather
 
     attr_reader :name, :cities
 
-    def initialize(name = nil)
-      client = Savon.client wsdl: local_wsdl_file # included from Utils
+    def initialize(name = nil, options = {})
+      local_config.merge!(options) # local_config is a method in Utils module
+
+      client = Savon.client({wsdl: local_wsdl_file}.merge(local_config)) # included from Utils
 
       raise Errors::CountryNotProvided if name.nil?
 
@@ -20,6 +22,8 @@ module GlobalWeather
           result = body[:get_cities_by_country_response] && body[:get_cities_by_country_response][:get_cities_by_country_result]
           create_attributes(result)
         end
+      else
+        raise Errors::ConnectionFailure, 'Request to SOAP service failed'
       end
     end
 
