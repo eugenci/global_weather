@@ -36,7 +36,7 @@ In order to get current weather (e.g. country 'Germany', city 'Berlin')
 
       weather = GlobalWeather::Weather.new 'Germany', 'Berlin' 
        
-      puts weather.time
+      puts weather.time[:UTC]
 
       puts weather.temperature[:C]
 

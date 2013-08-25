@@ -64,9 +64,15 @@ module GlobalWeather
       output[:f] = output[:F] = fahrenheit.to_i
       output
     end
-
-    def self.convert_time_to_datetime(intput)
+    # Aug 24, 2013 - 11:20 PM EDT / 2013.08.25 0320 UTC&
+    def self.convert_time_to_datetime(input)
       output = {}
+      edt_and_utc = input.split('/')
+      if edt_and_utc
+        output[:EDT] = output[:edt] = DateTime.parse(edt_and_utc[0].strip) unless edt_and_utc[0].nil?
+        output[:UTC] = output[:utc] = DateTime.strptime(edt_and_utc[1].strip,'%Y.%m.%d %H%M UTC') unless edt_and_utc[1].nil?
+      end
+      output
     end
 
     def self.convert_pressure_to_hash(input)

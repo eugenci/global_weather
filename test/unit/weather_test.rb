@@ -14,10 +14,16 @@ class GlobalWeatherTests < Test::Unit::TestCase
       assert weather.location =~ /Berlin/
       assert weather.location =~ /Germany/
       assert_equal 76, weather.relative_humidity
-      assert weather.time =~ /UTC/
+      assert_equal DateTime.new(2013,8,25,3,20,0), weather.time[:UTC]
     end
   end
-  
+
+  def test_convert_time_to_datetime
+    output = GlobalWeather::Weather.send(:convert_time_to_datetime, 'Aug 21, 2013 - 11:21 AM EDT / 2013.08.21 1521 UTC')
+    assert_equal DateTime.new(2013,8,21,15,21,0), output[:UTC]
+    assert_equal DateTime.new(2013,8,21,15,21,0), output[:EDT]
+  end
+
   def test_convert_pressure_to_hash_1
     output = GlobalWeather::Weather.send(:convert_pressure_to_hash, '20.34 in. Hg (688.79 hPa)')
     assert_equal output[:Hg], 20.34
