@@ -1,13 +1,4 @@
-Wrapper must return ruby objects instead of strings.
+further improvement: 
 
-Temprature:
-  '59 F (15 C)'   -->   {'C':15, 'F': 59}
-
-Pressure:
-  30.15 in. Hg (1021 hPa) --> {'Hg': 30.15, 'hPa': 1021}
-
-Dew point:
-  '59 F (15 C)'   -->   {'C':15, 'F': 59}
-
-Time:
-  DateTime obj
+One good improvement would be to CACHE SOME SOAP REQUEST for lets say 1
+hour o so. I will leave this for version 0.0.2 :)
