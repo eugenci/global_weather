@@ -4,9 +4,8 @@ module GlobalWeather
     attr_reader :name, :cities
 
     def initialize(name = nil, options = {})
-      local_config.merge!(options) # local_config is a method in Utils module
 
-      client = Savon.client({wsdl: local_wsdl_file}.merge(local_config)) # included from Utils
+      client = Client.connect(options)
 
       raise Errors::CountryNotProvided if name.nil?
 

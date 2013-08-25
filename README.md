@@ -18,6 +18,8 @@ Or install it yourself as:
 
     $ gem install global_weather
 
+This gem was tested on ruby 1.9.3p327 
+
 ## Usage
 
 Basically GlobalWeather gem provides 2 classes Country (wraps

@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{GlobalWeather SOAP service wrapper}
   spec.summary       = %q{Provides Weather and Country objects to use easy GlobalWeather service}
   spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.license       = "MIT or Do whatever you want with this gem!"
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

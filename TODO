@@ -1,4 +1,17 @@
 further improvement: 
 
-One good improvement would be to CACHE SOME SOAP REQUEST for lets say 1
-hour o so. I will leave this for version 0.0.2 :)
+1.
+
+One good improvement would be to CACHE SOME SOAP REQUESTS for lets say 1
+hour o so. 
+
+2. 
+
+Another discussion is wheather global_weather.yml config is needed or
+not and where to place it ? This is very dependent on gem use. I created
+a config/global_weather.yml in gems folder to help local gem
+development. Just remember, options passed to GlobalWeather::Weather and
+GlobalWeather::Country constructors override above mentioned config.
+
+I will leave improvement for for version 0.0.2 :)
+

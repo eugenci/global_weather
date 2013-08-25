@@ -1,7 +1,7 @@
 module GlobalWeather
   module Utils
 
-    def local_config
+    def self.local_config
       current_file = File.expand_path(File.dirname(__FILE__))
       config = YAML.load(File.open(File.join(current_file,'..','..','config','global_weather.yml')))
       # convert string keys into symbols
@@ -9,7 +9,7 @@ module GlobalWeather
     end
 
     # Returns local copy of wsdl schema file
-    def local_wsdl_file
+    def self.local_wsdl_file
       current_file = File.expand_path(File.dirname(__FILE__))
       File.open(File.join(current_file,'..','..','config','globalweather.asmx.xml'))
     end
