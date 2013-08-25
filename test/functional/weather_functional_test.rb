@@ -2,17 +2,15 @@ require_relative File.expand_path(File.dirname(__FILE__) + '/../test_helper')
 
 class GlobalWeatherPositiveTests < Test::Unit::TestCase
   def test_basic_call
-    VCR.use_cassette('get_weather_basic_call') do
-      weather = GlobalWeather::Weather.new 'Germany', 'Berlin', log: false
+    # This is REAL service call
+    weather = GlobalWeather::Weather.new 'Germany', 'Berlin', log: false
 
-      assert weather.time =~ /UTC/
-      assert weather.location =~ /Berlin/
-      assert weather.location =~ /Germany/
-      assert weather.temperature =~ /C/
-      assert weather.pressure =~ /Hg/
-      assert weather.relative_humidity =~ /%/
-      assert weather.dew_point =~ /C/
-    end
+    assert !weather.time.nil?
+    assert !weather.location.nil?
+    assert !weather.temperature.nil?
+    assert !weather.pressure.nil?
+    assert !weather.relative_humidity.nil?
+    assert !weather.dew_point.nil?
   end
 end
 

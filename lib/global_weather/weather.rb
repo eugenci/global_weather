@@ -26,7 +26,7 @@ module GlobalWeather
           create_attributes(result)
         end
       else
-        raise Errors::ConnectionFailure, 'Request to SOAP service failed'
+        raise Errors::RequestFailure, 'Request to SOAP service failed'
       end
     end
 
@@ -49,6 +49,32 @@ module GlobalWeather
         # camelize method is included from Utils
         instance_variable_set("@#{attribute}", hrep['CurrentWeather'][camelize(attribute)])
       end
+
+      @temperature       = Weather.convert_temperature_to_hash(@temperature)
+      @time              = Weather.convert_time_to_datetime(@time)
+      @dew_point         = Weather.convert_temperature_to_hash(@dew_point)
+      @pressure          = Weather.convert_pressure_to_hash(@pressure)
+      @relative_humidity = @relative_humidity.to_i
+    end
+
+    def self.convert_temperature_to_hash(input)
+      output = {}
+      /\s*(?<fahrenheit>\-?\d+) F\s*\((?<celsius>\-?\d+) C\)/ =~ input
+      output[:c] = output[:C] = celsius.to_i
+      output[:f] = output[:F] = fahrenheit.to_i
+      output
+    end
+
+    def self.convert_time_to_datetime(intput)
+      output = {}
+    end
+
+    def self.convert_pressure_to_hash(input)
+      output = {}
+      /\s*(?<hg>\d+\.*\d* in\. Hg) \s*\((?<hpa>\d+\.*\d*) hPa\)/ =~ input
+      output[:Hg] = output[:hg] = hg.to_f
+      output[:hPa] = output[:hpa] = hpa.to_f
+      output
     end
   end
 end

@@ -38,9 +38,13 @@ In order to get current weather (e.g. country 'Germany', city 'Berlin')
        
       puts weather.time
 
-      puts weather.temperature
+      puts weather.temperature[:C]
 
-      puts weather.pressure
+      puts weather.temperature[:F]
+
+      puts weather.pressure[:Hg]
+
+      puts weather.pressure[:hPa]
 
 
 See full list of attributes

@@ -23,7 +23,7 @@ module GlobalWeather
           create_attributes(result)
         end
       else
-        raise Errors::ConnectionFailure, 'Request to SOAP service failed'
+        raise Errors::RequestFailure, 'Request to SOAP service failed'
       end
     end
 

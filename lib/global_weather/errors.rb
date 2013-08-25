@@ -5,6 +5,6 @@ module GlobalWeather
     class CityOrCountryInvalid  < Exception; end
     class CountryInvalid        < Exception; end
     class InvalidResponseFormat < Exception; end
-    class ConnectionFailure     < Exception; end
+    class RequestFailure        < Exception; end
   end
 end
