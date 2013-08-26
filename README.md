@@ -18,7 +18,7 @@ Or install it yourself as:
 
     $ gem install global_weather
 
-This gem was tested on ruby 1.9.3p327 
+This gem was tested on ruby 1.9.3p327 and ruby 2.0.0p0
 
 ## Usage
 
