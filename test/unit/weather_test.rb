@@ -3,7 +3,7 @@ require_relative File.expand_path(File.dirname(__FILE__) + '/../test_helper')
 class GlobalWeatherTests < Test::Unit::TestCase
   def test_basic_call
     VCR.use_cassette('get_weather_basic_call') do
-      weather = GlobalWeather::Weather.new 'Germany', 'Berlin', log: false
+      weather = GlobalWeather::Weather.new 'Germany', 'Berlin'
 
       assert_equal 14,weather.temperature[:C]
       assert_equal 57, weather.temperature[:F]

@@ -3,7 +3,7 @@ require_relative File.expand_path(File.dirname(__FILE__) + '/../test_helper')
 class GlobalWeatherPositiveTests < Test::Unit::TestCase
   def test_basic_call
     # This is REAL service call
-    weather = GlobalWeather::Weather.new 'Germany', 'Berlin', log: false
+    weather = GlobalWeather::Weather.new 'Germany', 'Berlin'
 
     assert !weather.time.nil?
     assert !weather.location.nil?
