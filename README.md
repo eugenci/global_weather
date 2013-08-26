@@ -74,10 +74,13 @@ will run all tests
 
 ## Configuration
 
-  Global Weather gem has a config folder with global_weather.yml file
-  where all configuration options goes. All configuration given in yaml
-  file are passed further down to [Savon](http://savonrb.com/version2/)
-  gem.
-  Thus all options passed to Savon.client can be passed either from
-  config/global_weather.yml file or directly as last argument in
-  GlobalWeather::Weather and GlobalWeather::Country constructors.
+There is only one client instance shared among all instances of GlobalWeather
+Weather and Country objects. 
+
+  GlobalWeather::Client.configure do |config|
+    config.log false
+    config.proxy 'http://my_company_internal_proxy'
+  end
+
+options provided this way will be passed futher down to Savon.client. See full list of all
+at [savon documentation](http://savonrb.com/version2/globals.html)
