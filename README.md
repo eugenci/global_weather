@@ -84,5 +84,5 @@ Weather and Country objects.
     end
 
 
-options provided this way will be passed futher down to Savon.client. See full list of all
+options provided this way will be passed further down to Savon.client. See full list of all
 at [savon documentation](http://savonrb.com/version2/globals.html)
